@@ -6,7 +6,7 @@ export const todoCreator = (title, desc, dueDate, createTime = new Date(), check
     const getCreateTime = () => createTime;
     const getChecked = () => checked;
     const getPriority = () => priority;
-    const getid = () => id;
+    const getId = () => id;
 
     const setTitle = (newTitle) => {title = newTitle};
     const setDesc = (newDesc) => {desc = newDesc};
@@ -15,6 +15,6 @@ export const todoCreator = (title, desc, dueDate, createTime = new Date(), check
     const setPriority = (newPriority) => {priority = newPriority};
 
 
-    return {getTitle, getDesc, getDueDate, getCreateTime, getChecked, getPriority, getid, setTitle, setDesc, setDueDate, setChecked, setPriority}
+    return {getTitle, getDesc, getDueDate, getCreateTime, getChecked, getPriority, getId, setTitle, setDesc, setDueDate, setChecked, setPriority}
 
     }

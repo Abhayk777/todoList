@@ -1,9 +1,10 @@
-export const projectCreator = (projectTitle) =>{
+export const projectCreator = (projectTitle, id = crypto.randomUUID()) =>{
 
     let todoList = [];
     
     const getTitle = () => projectTitle;
     const getTodoList = () => todoList;
+    const getId = () => id;
 
     const setTitle = (newTitle) => {projectTitle = newTitle};
     
@@ -12,5 +13,5 @@ export const projectCreator = (projectTitle) =>{
         todoList.push(todo)
     }
 
-    return {getTitle, setTitle, addTodo, getTodoList}
+    return {getTitle, getTodoList, getId, setTitle, addTodo}
 }

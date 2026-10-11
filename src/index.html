@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>todo List</title>
 </head>
+
 <body>
     <div id="container">
         <div id="sideNav">
@@ -13,19 +15,33 @@
                 <div class="name"></div>
                 <div class="logout"></div>
             </div>
-            <div class="search"></div>
-            <div class="projectStore"></div>
-            <div class="addNew"></div>
+            <div id="search"></div>
+            <div id="projectStore">
+                <div id="defaultProject" class="project"></div>
+            </div>
+            <div class="addProject">
+                <button id="addProjectForm">Add Project</button>
+            </div>
         </div>
         <div id="content"></div>
+        <form action="" id="project" style="display: none;">
+            <input type="text" id="projectTitle" placeholder="Project Title">
+            <input type="submit" id="projectForm">
+            <button type="button" id="cancelProject">cancel</button>
+        </form>
+        <div class="addTodo">
+            <button id="addTodoForm" style="display: none;">Add Todo</button>
+        </div>
     </div>
-    <form action="" class="todo">
-        <input type="text" class="project" placeholder="project">
-        <input type="text" class="title" placeholder="title">
-        <input type="text" class="desc" placeholder="description">
-        <input type="time" class="time" placeholder="time">
-        <input type="submit" value="add">
-        <button type="button" id="cancel">cancel</button>
+    <form action="" id="todo" style="display: none;">
+        <input type="text" id="todoTitle" placeholder="Todo Title">
+        <input type="text" id="desc" placeholder="Description">
+        <input type="time" id="dueDate">
+        <input type="checkbox" id="status">
+        <input type="number" id="priority">
+        <input type="submit" value="add" id="todoInfo">
+        <button type="button" id="cancelTodo">cancel</button>
     </form>
+    
 </body>
 </html>

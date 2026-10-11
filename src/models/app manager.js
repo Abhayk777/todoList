@@ -1,8 +1,10 @@
-import { projectCreator } from "./project manager";
+import { projectCreator } from "./project manager.js";
 export const appManager = () =>{
 
-    let activeProject = projectCreator("INBOX");
-    let projectList = [activeProject];
+    const defaultProject = projectCreator("INBOX")
+
+    let activeProject = defaultProject;
+    let projectList = [defaultProject];
     
     
     const getProjectList = () => projectList;
@@ -13,7 +15,13 @@ export const appManager = () =>{
     }
 
     const getCurrentProject = () => activeProject;
-    const setCurrentProject = (project) => {activeProject = project};
+    const setCurrentProject = (id) => {
+        projectList.forEach(p =>{
+            if(p.getId() == id){
+                activeProject = p;
+            }
+        })
+    };
 
     return {getProjectList, addProject, getCurrentProject, setCurrentProject}
 }
