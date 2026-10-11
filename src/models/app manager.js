@@ -14,6 +14,8 @@ export const appManager = () =>{
         projectList.push(project) 
     }
 
+    const getDefaultProject = () => defaultProject;
+
     const getCurrentProject = () => activeProject;
     const setCurrentProject = (id) => {
         projectList.forEach(p =>{
@@ -23,5 +25,5 @@ export const appManager = () =>{
         })
     };
 
-    return {getProjectList, addProject, getCurrentProject, setCurrentProject}
+    return {getProjectList, addProject, getCurrentProject, getDefaultProject, setCurrentProject}
 }
