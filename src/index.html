@@ -11,37 +11,41 @@
     <div id="container">
         <div id="sideNav">
             <div class="info">
-                <div class="pfp"></div>
-                <div class="name"></div>
-                <div class="logout"></div>
+                <div class="pfp">
+                    <img class= "pfpImage" src="./assets/pfp.png" alt="">
+                </div>
+                <div class="name">Abhay Kaushik</div>
             </div>
-            <div id="search"></div>
-            <div id="projectStore">
-                <div id="defaultProject" class="project"></div>
-            </div>
-            <div class="addProject">
-                <button id="addProjectForm">Add Project</button>
+            <div id="search">search</div>
+            <div class="projectInfoHolder">
+                <div id="projectStore"></div>
+                <div class="addProject">
+                    <button id="addProjectForm">Add Project</button>
+                </div>
+                <form action="" id="project" style="display: none;">
+                    <input type="text" id="projectTitle" placeholder="Project Title">
+                    <input type="submit" id="projectForm">
+                    <button type="button" id="cancelProject">cancel</button>
+                </form>
             </div>
         </div>
-        <div id="content"></div>
-        <form action="" id="project" style="display: none;">
-            <input type="text" id="projectTitle" placeholder="Project Title">
-            <input type="submit" id="projectForm">
-            <button type="button" id="cancelProject">cancel</button>
-        </form>
-        <div class="addTodo">
-            <button id="addTodoForm" style="display: none;">Add Todo</button>
+        <div class="todoInfoHolder">
+            <div id="content"></div>
+            <form action="" id="todo" style="display: none;">
+                <input type="text" id="todoTitle" placeholder="Todo Title">
+                <input type="text" id="desc" placeholder="Description">
+                <input type="time" id="dueDate">
+                <input type="checkbox" id="status">
+                <input type="number" id="priority">
+                <input type="submit" value="add" id="saveButton">
+                <button type="button" id="cancelTodo">cancel</button>
+            </form>
+            <div class="addTodo">
+                <button id="addTodoForm" style="display: none;">Add Todo</button>
+            </div>
         </div>
     </div>
-    <form action="" id="todo" style="display: none;">
-        <input type="text" id="todoTitle" placeholder="Todo Title">
-        <input type="text" id="desc" placeholder="Description">
-        <input type="time" id="dueDate">
-        <input type="checkbox" id="status">
-        <input type="number" id="priority">
-        <input type="submit" value="add" id="saveButton">
-        <button type="button" id="cancelTodo">cancel</button>
-    </form>
+    
     
 </body>
 </html>

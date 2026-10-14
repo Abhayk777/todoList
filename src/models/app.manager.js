@@ -1,7 +1,7 @@
-import { projectCreator } from "./project manager.js";
+import { projectCreator } from "./project.manager.js";
 export const appManager = () =>{
 
-    const defaultProject = projectCreator("INBOX")
+    const defaultProject = projectCreator("Inbox")
 
     let activeProject = defaultProject;
     let projectList = [defaultProject];

@@ -1,7 +1,6 @@
-import { te } from "date-fns/locale";
-import { appManager } from "../models/app manager.js";
-import { projectCreator } from "../models/project manager.js";
-import { todoCreator } from "../models/todo manager.js";
+import { appManager } from "../models/app.manager.js";
+import { projectCreator } from "../models/project.manager.js";
+import { todoCreator } from "../models/todo.manager.js";
 
 const container = document.getElementById("container");
 const sideNav = document.getElementById("sideNav");
@@ -18,16 +17,30 @@ const status = document.getElementById("status");
 const priority = document.getElementById("priority");
 const cancelTodo = document.getElementById("cancelTodo");
 const cancelProject = document.getElementById("cancelProject");
-const defaultProject = document.getElementById("defaultProject");
 const saveButton = document.getElementById("saveButton");
-const projectStore = document.getElementById("projectStore")
+const projectStore = document.getElementById("projectStore");
 
 
 const app = appManager();
 
 
-
 let editingTodo = null;
+
+
+
+const priorityOrder = () => {
+    const divsArray = Array.from(content.children);
+
+    divsArray.sort((a, b) => {
+        
+        const valA = parseFloat(a.querySelector('.tPriority').textContent) || 0;
+        const valB = parseFloat(b.querySelector('.tPriority').textContent) || 0;
+        return valA - valB; 
+    });
+
+    divsArray.forEach(div => content.appendChild(div))
+}
+
 
 
 const displayProject = () => {
@@ -41,7 +54,18 @@ const displayProject = () => {
         const projectDiv = document.createElement("div");
         projectDiv.classList.add(`project_no.${i}`);
         projectDiv.dataset.projectId = p.getId();
-        projectDiv.textContent = p.getTitle();
+        
+        const projectTitle = document.createElement("span");
+        projectTitle.classList.add("projectTitle");
+        projectTitle.textContent = p.getTitle();
+        projectDiv.append(projectTitle)
+
+        p.getTodoList().forEach(s => {
+            const projectSpecificTodo = document.createElement("div");
+            projectSpecificTodo.classList.add("projectSpecificTodo");
+            projectSpecificTodo.textContent = "#"+" "+s.getTitle();
+            projectDiv.append(projectSpecificTodo);
+        })
 
         const deleteProject = document.createElement("button");
         deleteProject.classList.add("deleteProject");
@@ -137,7 +161,7 @@ const displayTodo = () => {
         todoStore.appendChild(checkStatus);
 
         const tPriority = document.createElement("p");
-        tPriority.classList.add("TPriority");
+        tPriority.classList.add("tPriority");
         tPriority.textContent = t.getPriority();
         todoStore.appendChild(tPriority);
 
@@ -189,6 +213,8 @@ const displayTodo = () => {
         
         i = i+1;
     })
+
+    priorityOrder();
 }
 
 
@@ -255,6 +281,7 @@ todoForm.addEventListener("submit", (e) => {
         todoForm.style.display = "none";
         addTodoForm.style.display = "flex";
         displayTodo();
+        displayProject();
 
         todoForm.reset();
     }
@@ -270,6 +297,7 @@ todoForm.addEventListener("submit", (e) => {
         
 
         displayTodo();
+        displayProject();
 
         todoForm.style.display = "none";
 
