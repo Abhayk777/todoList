@@ -134,6 +134,7 @@ const displayTodo = () => {
         const tTitle =  document.createElement("p");
         tTitle.classList.add("tTitle");
         tTitle.textContent = t.getTitle();
+        tTitle.setAttribute
         todoStore.appendChild(tTitle);
         
         const tDescription =  document.createElement("p");
@@ -143,7 +144,7 @@ const displayTodo = () => {
         
         const tDueDate =  document.createElement("p");
         tDueDate.classList.add("tDueDate");
-        tDueDate.textContent = t.getDueDate();
+        tDueDate.textContent = "Due Date-" + t.getDueDate();
         todoStore.appendChild(tDueDate);
         
         const tCreateTime =  document.createElement("p");

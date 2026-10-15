@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>todo List</title>
 </head>
 
@@ -23,7 +26,7 @@
                     <button id="addProjectForm">Add Project</button>
                 </div>
                 <form action="" id="project" style="display: none;">
-                    <input type="text" id="projectTitle" placeholder="Project Title">
+                    <input type="text" id="projectTitle" placeholder="Project Title" required>
                     <input type="submit" id="projectForm">
                     <button type="button" id="cancelProject">cancel</button>
                 </form>
@@ -32,11 +35,11 @@
         <div class="todoInfoHolder">
             <div id="content"></div>
             <form action="" id="todo" style="display: none;">
-                <input type="text" id="todoTitle" placeholder="Todo Title">
+                <input type="text" id="todoTitle" placeholder="Todo Title" required>
                 <input type="text" id="desc" placeholder="Description">
                 <input type="time" id="dueDate">
                 <input type="checkbox" id="status">
-                <input type="number" id="priority">
+                <input type="number" id="priority" required min="1">
                 <input type="submit" value="add" id="saveButton">
                 <button type="button" id="cancelTodo">cancel</button>
             </form>
