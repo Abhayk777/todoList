@@ -105,6 +105,7 @@ const displayProject = () => {
             displayProject();
             app.setCurrentProject(app.getDefaultProject().getId());
             displayTodo();
+            app.saveData();
 
         })
 
@@ -159,7 +160,14 @@ const displayTodo = () => {
         if (checkStatus.value == "true"){
             checkStatus.checked = true;
         }
+
+        checkStatus.addEventListener("change", () => {
+            t.setChecked(checkStatus.checked);
+            app.saveData();
+        });
         todoStore.appendChild(checkStatus);
+
+
 
         const tPriority = document.createElement("p");
         tPriority.classList.add("tPriority");
@@ -207,7 +215,8 @@ const displayTodo = () => {
                 j = j + 1;
             })
 
-            displayTodo()
+            displayTodo();
+            app.saveData();
         })
 
         content.appendChild(todoStore)
@@ -236,6 +245,7 @@ projectForm.addEventListener("submit", (e) => {
     projectForm.reset();
 
     displayProject();
+    app.saveData();
 })
 
 
@@ -283,6 +293,7 @@ todoForm.addEventListener("submit", (e) => {
         addTodoForm.style.display = "flex";
         displayTodo();
         displayProject();
+        app.saveData();
 
         todoForm.reset();
     }
@@ -299,6 +310,7 @@ todoForm.addEventListener("submit", (e) => {
 
         displayTodo();
         displayProject();
+        app.saveData();
 
         todoForm.style.display = "none";
 
@@ -330,4 +342,5 @@ const statusChecker = () => {
     }
 }
 
+displayTodo();
 displayProject();
