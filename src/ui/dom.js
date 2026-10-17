@@ -29,17 +29,17 @@ let editingTodo = null;
 
 
 const priorityOrder = () => {
-    const divsArray = Array.from(content.children);
+    const divsArray = Array.from(content.querySelectorAll('div[class^="todo_no."]'));
 
     divsArray.sort((a, b) => {
-        
-        const valA = parseFloat(a.querySelector('.tPriority').textContent) || 0;
-        const valB = parseFloat(b.querySelector('.tPriority').textContent) || 0;
+        const valA = parseFloat(a.querySelector('.tPriority')?.textContent) || 0;
+        const valB = parseFloat(b.querySelector('.tPriority')?.textContent) || 0;
         return valA - valB; 
     });
 
-    divsArray.forEach(div => content.appendChild(div))
+    divsArray.forEach(div => content.appendChild(div));
 }
+
 
 
 
@@ -60,12 +60,20 @@ const displayProject = () => {
         projectTitle.textContent = p.getTitle();
         projectDiv.append(projectTitle)
 
+        const hashColors = ["#de4c4a", "#e29306", "#246fe0", "#8a3ffc", "#10b981", "#ec4899", "#f97316"];
+        let colorIdx = 0;
+
         p.getTodoList().forEach(s => {
             const projectSpecificTodo = document.createElement("div");
             projectSpecificTodo.classList.add("projectSpecificTodo");
-            projectSpecificTodo.textContent = "#"+" "+s.getTitle();
+            
+            const currentColor = hashColors[colorIdx % hashColors.length];
+            projectSpecificTodo.innerHTML = `<span class="todoHash" style="color: ${currentColor};">#</span> ${s.getTitle()}`;
             projectDiv.append(projectSpecificTodo);
-        })
+            
+            colorIdx++;
+        });
+
 
         const deleteProject = document.createElement("button");
         deleteProject.classList.add("deleteProject");
@@ -126,6 +134,11 @@ const displayTodo = () => {
     let i = 0;
     
     content.textContent = "";
+
+    const contentTitle = document.createElement("h1");
+    contentTitle.classList.add("contentTitle");
+    contentTitle.textContent = app.getCurrentProject().getTitle();
+    content.append(contentTitle);
     
     app.getCurrentProject().getTodoList().forEach(t => {
         const todoStore = document.createElement("div");
@@ -143,10 +156,24 @@ const displayTodo = () => {
         tDescription.textContent = t.getDesc();
         todoStore.appendChild(tDescription);
         
-        const tDueDate =  document.createElement("p");
+        const tDueDate = document.createElement("p");
         tDueDate.classList.add("tDueDate");
-        tDueDate.textContent = "Due Date-" + t.getDueDate();
+
+        let formattedDueDate = "No due date";
+        if (t.getDueDate()) {
+            const dateObj = new Date(t.getDueDate());
+            formattedDueDate = dateObj.toLocaleString(undefined, {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        tDueDate.textContent = "Due: " + formattedDueDate;
         todoStore.appendChild(tDueDate);
+
         
         const tCreateTime =  document.createElement("p");
         tCreateTime.classList.add("tCreatetime");
@@ -171,7 +198,7 @@ const displayTodo = () => {
 
         const tPriority = document.createElement("p");
         tPriority.classList.add("tPriority");
-        tPriority.textContent = t.getPriority();
+        tPriority.textContent = "Priority- " + t.getPriority();
         todoStore.appendChild(tPriority);
 
         const tEdit = document.createElement("button");
